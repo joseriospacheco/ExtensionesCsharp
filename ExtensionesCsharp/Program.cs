@@ -2,7 +2,17 @@
 
 namespace ExtensionesCsharp;
 
-internal class Program
+
+public enum EstadoPrestamo
+{
+    Pendiente = 1,
+    Aprobado = 2,
+    Rechazado = 3,
+    Pagado = 4,
+    EnMora = 5
+}
+
+public class Program
 {
     static void Main(string[] args)
     {
@@ -56,6 +66,28 @@ internal class Program
         var fechaNacimiento2 = new DateOnly(1992, 3, 2); // Cambia la fecha para probar
         edad = fechaNacimiento2.CalcularEdad();
         Console.WriteLine($"Edad: {edad} años"); // Salida: "Edad: XX años"
+
+
+
+        EstadoPrestamo estado = EstadoPrestamo.Aprobado;
+
+        // Convertir enum a int
+        int estadoInt = estado.ToInt();
+        Console.WriteLine($"Estado en int: {estadoInt}"); // Salida: 2
+
+        // Convertir enum a string
+        string estadoStr = estado.ToStringValue();
+        Console.WriteLine($"Estado en string: {estadoStr}"); // Salida: "Aprobado"
+
+        // Convertir int a enum
+        EstadoPrestamo estadoDesdeInt = 3.ToEnum<EstadoPrestamo>();
+        Console.WriteLine($"Estado desde int: {estadoDesdeInt}"); // Salida: "Rechazado"
+
+        // Convertir string a enum
+        EstadoPrestamo estadoDesdeStr = "EnMora".ToEnum<EstadoPrestamo>();
+        Console.WriteLine($"Estado desde string: {estadoDesdeStr}"); // Salida: "EnMora"
+
+
     }
 
 }
