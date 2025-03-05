@@ -1,16 +1,10 @@
-﻿using ExtensionesCsharp.Extensions;
+﻿using ExtensionesCsharp.Dtos;
+using ExtensionesCsharp.Entities;
+using ExtensionesCsharp.Enum;
+using ExtensionesCsharp.Extensions;
 
 namespace ExtensionesCsharp;
 
-
-public enum EstadoPrestamo
-{
-    Pendiente = 1,
-    Aprobado = 2,
-    Rechazado = 3,
-    Pagado = 4,
-    EnMora = 5
-}
 
 public class Program
 {
@@ -86,6 +80,25 @@ public class Program
         // Convertir string a enum
         EstadoPrestamo estadoDesdeStr = "EnMora".ToEnum<EstadoPrestamo>();
         Console.WriteLine($"Estado desde string: {estadoDesdeStr}"); // Salida: "EnMora"
+
+
+
+        var persona = new Persona { Nombre = "Juan", Apellido = "Pérez", Edad = 23 };
+
+        // Mapeo manual a través del método de extensión
+        var personaDto = persona.ToDto();
+        Console.WriteLine($"DTO -> Nombre: {personaDto.Nombre}");
+        Console.WriteLine($"DTO -> Apellido: {personaDto.Apellido}");
+        Console.WriteLine($"DTO -> Edad: {personaDto.Edad}");
+
+        personaDto = new PersonaDto { Nombre = "Jose", Apellido = "Perez", Edad = 33 };
+
+        Persona personaEntity = personaDto.ToEntity();
+        Console.WriteLine($"Entity -> Nombre: {personaEntity.Nombre}");
+        Console.WriteLine($"Entity -> Apellido: {personaEntity.Apellido}");
+        Console.WriteLine($"Entity -> Edad: {personaEntity.Edad}");
+
+
 
 
     }
